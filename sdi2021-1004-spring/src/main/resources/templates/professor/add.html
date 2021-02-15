@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Test Page</title>
-</head>
+<html lang="en">
+<head th:replace="fragments/head"/>
 <body>
-<form method="post" action="/professor/add">
- dni:<br>
- <input type="text" name="dni"></br>
- nombre :<br>
- <input type="text" name="nombre" ></br>
- apellidos :<br>
- <input type="text" name="apellidos" ></br>
- categoría :<br>
- <input type="text" name="categoria" ></br>
- <input type="submit" value="Send">
-</form>
+
+<!-- Barra de Navegación superior -->
+<nav th:replace="fragments/nav"/>
+
+<div class="container">
+  <h2>Agregar profesor</h2>
+  <form class="form-horizontal" method="post" action="/professor/add">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="description">Dni:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="dni" placeholder="dni" required="true" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Nombre:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" name="nombre" placeholder="nombre" required="true" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Apellidos:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" name="apellidos" placeholder="apellidos" required="true" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Nombre:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" name="nombre" placeholder="nombre" required="true" />
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </form>
+</div>
+<footer th:replace="fragments/footer"/>
 </body>
 </html>
