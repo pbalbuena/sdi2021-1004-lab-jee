@@ -9,17 +9,17 @@
 
 
 <div class="container">
-  <h2>Profesores</h2>
-  <p>Los profesores que actualmente figuran en el sistema son las siguientes:</p>                                                                                      
+  <h2 th:text="#{Professor.list.h2}">Profesores</h2>
+  <p th:text="#{Professor.list.descripcion}">Los profesores que actualmente figuran en el sistema son las siguientes:</p>                                                                                      
   <div class="table-responsive">          
   <table class="table table-hover">
     <thead>
       <tr>
-        <th class="col-md-1">id</th>
-        <th>DNI</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Categoría</th>
+        <th class="col-md-1" th:text="#{Professor.list.campo1}">id</th>
+        <th th:text="#{Professor.list.campo2}">DNI</th>
+        <th th:text="#{Professor.list.campo3}">Nombre</th>
+        <th th:text="#{Professor.list.campo4}">Apellidos</th>
+        <th th:text="#{Professor.list.campo5}">Categoría</th>
 		<th class="col-md-1"> </th>
 		<th class="col-md-1"> </th>
 		<th class="col-md-1"> </th>
@@ -34,9 +34,9 @@
 	    <td th:text="${p.nombre}"> Ejercicio 1</td>
 	    <td th:text="${p.apellidos}">10</td>
 	    <td th:text="${p.categoria}">10</td>
-	    <td><a th:href="${'/professor/details/' + p.id}">detalles</a></td>
-	    <td><a th:href="${'/professor/edit/' + p.id}">modificar</a></td>
-	    <td><a th:href="${'/professor/delete/' + p.id}">eliminar</a></td>
+	    <td><a th:href="${'/professor/details/' + p.id}" th:text="#{Detalles}">detalles</a></td>
+	    <td><a th:href="${'/professor/edit/' + p.id}" th:text="#{Modificar}">modificar</a></td>
+	    <td><a th:href="${'/professor/delete/' + p.id}" th:text="#{Eliminar}">eliminar</a></td>
 	  </tr>
 	</tbody>
   </table>

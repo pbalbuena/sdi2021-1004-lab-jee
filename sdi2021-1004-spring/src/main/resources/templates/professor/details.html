@@ -9,27 +9,27 @@
 
 
 <div class="container">
-  <h2>Detalles del profesor</h2>                                                                            
+  <h2 th:text="#{Professor.details.h2}">Detalles del profesor</h2>                                                                            
   <div class="panel panel-default">
-	  <div class="panel-heading">dni</div>
+	  <div class="panel-heading" th:text="#{Professor.list.campo2}">dni</div>
 	  <div class="panel-body" th:text="${prof.dni}" >
 		Ejercicio 1
 	  </div>
   </div>
   <div class="panel panel-default">
-	  <div class="panel-heading">Nombre</div>
+	  <div class="panel-heading" th:text="#{Professor.list.campo3}">Nombre</div>
 	  <div class="panel-body" th:text="${prof.nombre}">
 		100
 	  </div>
   </div>
   <div class="panel panel-default">
-	  <div class="panel-heading">Apellidos</div>
+	  <div class="panel-heading" th:text="#{Professor.list.campo4}">Apellidos</div>
 	  <div class="panel-body" th:text="${prof.apellidos}">
 		100
 	  </div>
   </div>
   <div class="panel panel-default">
-	  <div class="panel-heading">Categoría</div>
+	  <div class="panel-heading" th:text="#{Professor.list.campo5}">Categoría</div>
 	  <div class="panel-body" th:text="${prof.categoria}">
 		100
 	  </div>

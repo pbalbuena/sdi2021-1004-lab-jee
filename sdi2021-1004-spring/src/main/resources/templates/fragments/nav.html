@@ -13,21 +13,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestion de notas <span
+					data-toggle="dropdown" href="#" th:text="#{Nav.marks.admin}"> Gestion de notas <span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/list">Ver Notas</a></li>
-						<li><a href="/mark/add">Agregar nota</a>
-						<li><a href="/professor/list">Ver Profesores</a></li>
-						<li><a href="/professor/add">Agregar Profesores</a></li>
+						<li><a href="/mark/list" th:text="#{Nav.marks.list}">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text="#{Nav.marks.add}">Agregar nota</a>
+						<li><a href="/professor/list" th:text="#{Nav.professor.list}">Ver Profesores</a></li>
+						<li><a href="/professor/add" th:text="#{Nav.professor.add}">Agregar Profesores</a></li>
 					</ul>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> Gestion de usuarios <span
+					data-toggle="dropdown" href="#" th:text="#{Nav.user.admin}"> Gestion de usuarios <span
 						class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/list" th:text="#{Nav.user.list}">Ver Usuarios</a></li>
 					</ul>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -48,8 +48,12 @@
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
 						</a></li>
+						<li><a id="btnFrench" value="FR"> <img
+								th:src="@{/img/if_france_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.fr}">Frances</span>
+						</a></li>
 					</ul></li>
-
 				<li><a href="/signup" th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span> Registrate
 				</a></li>
