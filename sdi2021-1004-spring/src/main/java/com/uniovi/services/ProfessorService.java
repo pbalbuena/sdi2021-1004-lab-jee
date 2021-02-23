@@ -7,22 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Professor;
+import com.uniovi.entities.User;
 import com.uniovi.repositories.ProfessorRepository;
 
 @Service
 public class ProfessorService {
-	//private List<Professor> professorList = new LinkedList<Professor>();
+	// private List<Professor> professorList = new LinkedList<Professor>();
 
 	@Autowired
 	private ProfessorRepository repo;
-	
+
 	/*
-	@PostConstruct
-	public void init() {
-		professorList.add(new Professor(1L, "1234567", "Juan", "Pérez", "1"));
-		professorList.add(new Professor(2L, "6543216", "Pablo", "García", "3"));
-	}
-	*/
+	 * @PostConstruct public void init() { professorList.add(new Professor(1L,
+	 * "1234567", "Juan", "Pérez", "1")); professorList.add(new Professor(2L,
+	 * "6543216", "Pablo", "García", "3")); }
+	 */
 
 	public List<Professor> getProfessors() {
 		List<Professor> list = new ArrayList<Professor>();
@@ -42,4 +41,7 @@ public class ProfessorService {
 		repo.deleteById(id);
 	}
 
+	public Professor getProfessorByDni(String dni) {
+		return repo.findByDni(dni);
+	}
 }
