@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Professor;
-import com.uniovi.entities.User;
+import com.uniovi.services.DepartamentoService;
 import com.uniovi.services.ProfessorService;
 import com.uniovi.validators.ProfessorAddFormValidator;
 
@@ -21,6 +21,8 @@ public class ProfessorController {
 	private ProfessorService service;
 	@Autowired
 	private ProfessorAddFormValidator validator;
+	@Autowired
+	private DepartamentoService depService;
 
 	@RequestMapping("/professor/list")
 	public String getList(Model model) {
@@ -31,14 +33,16 @@ public class ProfessorController {
 	@RequestMapping(value = "/professor/add")
 	public String getProfessor(Model model) {
 		model.addAttribute("professor", new Professor());
+		model.addAttribute("depList", depService.getDepartamentos());
 		return "professor/add";
 	}
 	
 
 	@RequestMapping(value = "/professor/add", method = RequestMethod.POST)
-	public String setProfessor(@Validated Professor professor, BindingResult result) {
+	public String setProfessor(Model model, @Validated Professor professor, BindingResult result) {
 		validator.validate(professor, result);
 		if(result.hasErrors()) {
+			model.addAttribute("depList", depService.getDepartamentos());
 			return "professor/add";
 		}
 		

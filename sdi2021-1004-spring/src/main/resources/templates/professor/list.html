@@ -20,6 +20,8 @@
         <th th:text="#{Professor.list.campo3}">Nombre</th>
         <th th:text="#{Professor.list.campo4}">Apellidos</th>
         <th th:text="#{Professor.list.campo5}">Categoría</th>
+        <th th:text="#{Professor.add.campo5}">dep</th>
+		<th class="col-md-1"> </th>
 		<th class="col-md-1"> </th>
 		<th class="col-md-1"> </th>
 		<th class="col-md-1"> </th>
@@ -34,6 +36,7 @@
 	    <td th:text="${p.nombre}"> Ejercicio 1</td>
 	    <td th:text="${p.apellidos}">10</td>
 	    <td th:text="${p.categoria}">10</td>
+	    <td th:text="${p.departamento.descripcion}">10</td>
 	    <td><a th:href="${'/professor/details/' + p.id}" th:text="#{Detalles}">detalles</a></td>
 	    <td><a th:href="${'/professor/edit/' + p.id}" th:text="#{Modificar}">modificar</a></td>
 	    <td><a th:href="${'/professor/delete/' + p.id}" th:text="#{Eliminar}">eliminar</a></td>
