@@ -10,16 +10,20 @@
 
 	<div class="container">
 		<h2 th:text="#{Mark.list.h2}">Notas</h2>
-		<p th:text="#{Mark.list.descripcion}">Las notas que actualmente figuran en el sistema son las
-			siguientes:</p>
 
-		<button type="button" id="updateButton" class="btn btn-default" th:text="#{Button.update}">Actualizar</button>
+		
+
+		<p th:text="#{Mark.list.descripcion}">Las notas que actualmente
+			figuran en el sistema son las siguientes:</p>
+
+		<button type="button" id="updateButton" class="btn btn-default"
+			th:text="#{Button.update}">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
 				$("#tableMarks").load('/mark/list/update');
 			});
 		</script>
-		
+
 		<div class="table-responsive">
 			<table class="table table-hover" th:fragment="tableMarks"
 				id="tableMarks">
@@ -38,9 +42,12 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{Detalles}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{Modificar}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{Eliminar}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}"
+							th:text="#{Detalles}">detalles</a></td>
+						<td><a th:href="${'/mark/edit/' + mark.id}"
+							th:text="#{Modificar}">modificar</a></td>
+						<td><a th:href="${'/mark/delete/' + mark.id}"
+							th:text="#{Eliminar}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
