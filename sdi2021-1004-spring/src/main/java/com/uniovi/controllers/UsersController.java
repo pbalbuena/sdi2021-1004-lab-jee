@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
+import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UserService;
 import com.uniovi.validators.SignUpFormValidator;
+import com.uniovi.validators.UserAddFormValidator;
 
 @Controller
 public class UsersController {
@@ -25,10 +26,15 @@ public class UsersController {
 
 	@Autowired
 	private SecurityService securityService;
+
+	@Autowired
+	private SignUpFormValidator signUpFormValidator;
+
+	@Autowired
+	private UserAddFormValidator userAddFormValidator;
 	
 	@Autowired
-	 private SignUpFormValidator signUpFormValidator;
-
+	private RolesService rolesService;
 
 	@RequestMapping("/user/list")
 	public String getListado(Model model) {
@@ -38,12 +44,21 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {
+		model.addAttribute("user",new User()); //para validacion
+		model.addAttribute("rolesList", rolesService.getRoles());
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String setUser(@ModelAttribute User user) {
+	public String setUser(Model model, @Validated User user, BindingResult result) {
+		
+		userAddFormValidator.validate(user, result);
+		if (result.hasErrors()) {
+			model.addAttribute("rolesList", rolesService.getRoles());
+			return "user/add";
+		}
+		
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
@@ -68,7 +83,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {		
+	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
 		User original = usersService.getUser(id);
 		original.setDni(user.getDni());
 		original.setName(user.getName());
@@ -87,9 +102,12 @@ public class UsersController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@Validated User user, BindingResult result) {
 		signUpFormValidator.validate(user, result);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "signup";
 		}
+
+		user.setRole(rolesService.getRoles()[0]);
+
 		usersService.addUser(user);
 		securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
 		return "redirect:home";
@@ -108,11 +126,11 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
-	
+
 	@RequestMapping("/user/list/update")
 	public String updateList(Model model) {
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/list :: tableUsers";
 	}
-	
+
 }
