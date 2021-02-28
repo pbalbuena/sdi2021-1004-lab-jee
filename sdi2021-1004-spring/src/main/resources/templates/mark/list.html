@@ -11,7 +11,7 @@
 	<div class="container">
 		<h2 th:text="#{Mark.list.h2}">Notas</h2>
 
-		
+
 
 		<p th:text="#{Mark.list.descripcion}">Las notas que actualmente
 			figuran en el sistema son las siguientes:</p>
@@ -44,10 +44,56 @@
 						<td th:text="${mark.score}">10</td>
 						<td><a th:href="${'/mark/details/' + mark.id}"
 							th:text="#{Detalles}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}"
-							th:text="#{Modificar}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}"
-							th:text="#{Eliminar}">eliminar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/edit/' + mark.id}" th:text="#{Modificar}">modificar</a>
+							<div sec:authorize="hasRole('ROLE_STUDENT')">
+								<div th:if="${mark.resend}">
+									<button type="button" th:id="${'resendButton' + mark.id}"
+										class="btn btn-info">Reenviar</button>
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										$("#resendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/noresend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
+										/*]]>*/
+									</script>
+								</div>
+								<div th:unless="${mark.resend}">
+									<button type="button" th:id="${'noresendButton' + mark.id}"
+										class="btn btn-default">No reenviar</button>
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										$("#noresendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/resend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
+										/*]]>*/
+									</script>
+								</div>
+							</div></td>
+						<td><a sec:authorize="hasRole('ROLE_PROFESSOR')"
+							th:href="${'/mark/delete/' + mark.id}" th:text="#{Eliminar}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
