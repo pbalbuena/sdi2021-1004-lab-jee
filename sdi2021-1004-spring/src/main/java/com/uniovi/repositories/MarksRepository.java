@@ -21,4 +21,8 @@ public interface MarksRepository extends CrudRepository<Mark, Long> {
 	@Query("SELECT r FROM Mark r WHERE r.user = ?1 ORDER BY r.id ASC ")
 	List<Mark> findAllByUser(User user);
 
+	@Query("SELECT r from Mark r WHERE (LOWER(r.description) LIKE LOWER(?1) or LOWER(r.user.name) LIKE LOWER(?1))")
+	List<Mark> searchByDescriptionAndName(String str);
+	@Query("SELECT r from Mark r WHERE (LOWER(r.description) LIKE LOWER(?1) or LOWER(r.user.name) LIKE LOWER(?1)) AND r.user =?2")
+	List<Mark> searchByDescriptionNameAndUser(String str, User user);
 }
