@@ -5,7 +5,10 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.uniovi.entities.Departamento;
 import com.uniovi.entities.Mark;
+import com.uniovi.entities.Professor;
 import com.uniovi.entities.User;
 
 @Service
@@ -14,6 +17,10 @@ public class InsertSampleDataService {
 	private UserService usersService;
 	@Autowired
 	private RolesService rolesService;
+	@Autowired
+	private DepartamentoService departamentoService;
+	@Autowired
+	private ProfessorService professorService;
 
 	@PostConstruct
 	public void init() {
@@ -35,6 +42,24 @@ public class InsertSampleDataService {
 		User user6 = new User("99999988F", "Edward", "Núñez");
 		user6.setPassword("123456");
 		user6.setRole(rolesService.getRoles()[2]);
+		
+		Professor p1 = new Professor("12345678P", "Miguel", "Sánchez", "A");
+		Departamento d1 = new Departamento("Informática");
+		Set<Professor> dep1Profs = new HashSet<Professor>() {
+			{
+				add(p1);
+			}
+		};
+		
+		p1.setDepartamento(d1);
+		d1.setProfessors(dep1Profs);
+
+		departamentoService.addDepartamento(d1);
+		
+		
+		
+		
+		
 
 		Set user1Marks = new HashSet<Mark>() {
 			{
@@ -71,6 +96,7 @@ public class InsertSampleDataService {
 			}
 		};
 		user4.setMarks(user4Marks);
+		
 		usersService.addUser(user1);
 		usersService.addUser(user2);
 		usersService.addUser(user3);

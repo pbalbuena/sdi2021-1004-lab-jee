@@ -28,6 +28,10 @@ public class Departamento {
 		this.professors = professors;
 	}
 
+	public Departamento(String string) {
+		this.descripcion = string;
+	}
+
 	public Long getId() {
 		return id;
 	}

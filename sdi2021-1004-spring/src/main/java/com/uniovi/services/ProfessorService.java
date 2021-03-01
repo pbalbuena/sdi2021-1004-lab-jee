@@ -1,11 +1,16 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.Professor;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.ProfessorRepository;
@@ -44,4 +49,5 @@ public class ProfessorService {
 	public Professor getProfessorByDni(String dni) {
 		return repo.findByDni(dni);
 	}
+	
 }

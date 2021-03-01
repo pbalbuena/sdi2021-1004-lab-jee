@@ -23,7 +23,7 @@
 							href="/mark/add" th:text="#{Nav.marks.add}">Agregar nota</a>
 						<li><a href="/professor/list" th:text="#{Nav.professor.list}">Ver
 								Profesores</a></li>
-						<li><a href="/professor/add" th:text="#{Nav.professor.add}">Agregar
+						<li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/professor/add" th:text="#{Nav.professor.add}">Agregar
 								Profesores</a></li>
 						<li><a href="/departamento/list"
 							th:text="#{Nav.departamento.list}">Ver Departamentos</a></li>
