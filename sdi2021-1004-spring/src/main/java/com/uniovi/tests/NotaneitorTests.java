@@ -16,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.tests.pageobjects.PO_AddUserView;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_PrivateView;
@@ -71,6 +72,7 @@ public class NotaneitorTests {
 		// Cerramos el navegador al finalizar las pruebas
 		driver.quit();
 	}
+
 
 	// PR01. Acceder a la página principal /
 	@Test
@@ -281,8 +283,9 @@ public class NotaneitorTests {
 		elementos.get(3).click();
 		// Esperamos a que aparezca la Nueva nota en la ultima pagina
 		// Y Pinchamos en el enlace de borrado de la Nota "Nota Nueva 1"
-		// td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(text(), 'mark/delete')]"
-		elementos = PO_View.checkElement(driver, "free", 
+		// td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(text(),
+		// 'mark/delete')]"
+		elementos = PO_View.checkElement(driver, "free",
 				"//td[contains(text(), 'Nota Nueva 1')]/following-sibling::*/a[contains(@href, 'mark/delete')]");
 		elementos.get(0).click();
 		// Volvemos a la última pagina
