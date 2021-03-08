@@ -68,7 +68,7 @@ public class NotaneitorComplementario {
 		driver.quit();
 	}
 
-	/////////////////////////////////////////////////////
+	////////////////////////////////////////////////
 	// Registro de profesores con datos válidos. (relanzar la app para que el dni no este duplicado)
 	@Test
 	public void prueba1() {
